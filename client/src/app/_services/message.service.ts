@@ -3,12 +3,16 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { Message } from '../_models/message';
 import { getPaginatedResult, getPaginationHeaders } from './paginationHelper';
+import {HubConnection, HubConnectionBuilder} from '@microsoft/signalr';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class MessageService {
   baseUrl = environment.apiUrl;
+  hubUrl = environment.hubUrl;
+  private hubConnection: HubConnection;
 
   constructor(private http: HttpClient) { }
 
